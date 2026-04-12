@@ -281,9 +281,18 @@ function SearchModal({ isOpen, onClose, onSelect }: { isOpen: boolean; onClose: 
 
   useEffect(() => {
     if (isOpen) {
-      inputRef.current?.focus();
+      setQuery('');
+      setTimeout(() => inputRef.current?.focus(), 50);
     }
   }, [isOpen]);
+
+  const handleInputKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      onClose();
+      setQuery('');
+    }
+  };
 
   const results = query.trim()
     ? searchIndex.filter(item =>
@@ -308,6 +317,7 @@ function SearchModal({ isOpen, onClose, onSelect }: { isOpen: boolean; onClose: 
             placeholder="搜索接口、字段..."
             value={query}
             onChange={e => setQuery(e.target.value)}
+            onKeyDown={handleInputKeyDown}
             className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-400"
           />
           <kbd className="px-2 py-1 text-xs bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 rounded">
@@ -432,15 +442,18 @@ export default function PaymentDocPage() {
   // Keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Close search on Escape
+      if (e.key === 'Escape') {
+        setSearchOpen(false);
+      }
+      
+      // Open search on /
       if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
         const target = e.target as HTMLElement;
         if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA') {
           e.preventDefault();
           setSearchOpen(true);
         }
-      }
-      if (e.key === 'Escape') {
-        setSearchOpen(false);
       }
     };
 
