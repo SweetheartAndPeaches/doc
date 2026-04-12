@@ -402,11 +402,13 @@ export default function PaymentDocPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
           <div className="w-full max-w-md p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700">
             <div className="text-center mb-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white text-xl font-bold rounded-2xl shadow-lg mb-4">
-                API
-              </div>
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">NEQUPAY 支付文档</h2>
-              <p className="text-gray-500 dark:text-gray-400 mt-2">请登录后查看文档</p>
+              <img 
+                src="/neqpay-logo.png" 
+                alt="NEQUPAY Logo" 
+                className="inline-flex items-center justify-center w-20 h-20 rounded-2xl shadow-lg mb-4"
+              />
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">NEQUPAY</h2>
+              <p className="text-gray-500 dark:text-gray-400 mt-2">支付API文档 · 请登录后查看</p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-4">
@@ -478,13 +480,15 @@ export default function PaymentDocPage() {
                 </button>
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-500/20">
-                      API
-                    </div>
+                    <img 
+                      src="/neqpay-logo.png" 
+                      alt="NEQUPAY Logo" 
+                      className="w-10 h-10 rounded-xl shadow-lg"
+                    />
                     <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-slate-900"></div>
                   </div>
                   <div>
-                    <h1 className="text-lg font-bold text-gray-900 dark:text-white">NEQUPAY</h1>
+                    <h1 className="text-lg font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">NEQUPAY</h1>
                     <p className="text-[10px] text-gray-500 dark:text-gray-400 -mt-0.5">支付API文档</p>
                   </div>
                 </div>
@@ -629,7 +633,14 @@ export default function PaymentDocPage() {
                 <Zap className="h-4 w-4" />
                 API Documentation
               </div>
-              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
+              <div className="flex justify-center mb-4">
+                <img 
+                  src="/neqpay-logo.png" 
+                  alt="NEQUPAY Logo" 
+                  className="w-20 h-20 rounded-2xl shadow-xl"
+                />
+              </div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-3 tracking-tight">
                 NEQUPAY 支付API
               </h1>
               <p className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto">
