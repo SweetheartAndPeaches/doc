@@ -400,8 +400,8 @@ export default function PaymentDocPage() {
         />
       </div>
 
-      {/* 登录表单 */}
-      {!isLoggedIn && (
+      {/* 登录表单 - 仅在需要登录时显示 */}
+      {REQUIRE_LOGIN && !isLoggedIn && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
           <div className="w-full max-w-md p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700">
             <div className="text-center mb-8">
