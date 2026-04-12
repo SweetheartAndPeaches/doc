@@ -473,7 +473,7 @@ export default function PaymentDocPage() {
             <div className="flex items-center justify-between h-14 px-4 lg:px-8">
               <div className="flex items-center gap-4">
                 <button
-                  className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                  className="p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
                   {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -524,7 +524,6 @@ export default function PaymentDocPage() {
             {/* Sidebar */}
             <aside className={cn(
               'w-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-gray-100 dark:border-slate-800 fixed h-[calc(100vh-3.5rem)] overflow-y-auto z-40 transition-all duration-300',
-              'lg:block',
               mobileMenuOpen ? 'block' : 'hidden'
             )}>
               <nav className="p-4">
@@ -571,7 +570,10 @@ export default function PaymentDocPage() {
             )}
 
             {/* Main content */}
-            <main className="flex-1 lg:ml-64 min-h-[calc(100vh-3.5rem)]">
+            <main className={cn(
+              'flex-1 min-h-[calc(100vh-3.5rem)] transition-all duration-300',
+              mobileMenuOpen ? 'lg:ml-64' : 'lg:ml-0'
+            )}>
               <div className="max-w-4xl mx-auto px-6 py-10">
             {/* Page header */}
             <div className="mb-12 text-center">
