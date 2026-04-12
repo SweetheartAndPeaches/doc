@@ -403,11 +403,11 @@ export default function PaymentDocPage() {
           <div className="w-full max-w-md p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700">
             <div className="text-center mb-8">
               <img 
-                src="/neqpay-logo.png" 
-                alt="NEQUPAY Logo" 
+                src="/kopay-logo.png" 
+                alt="KOPAY Logo" 
                 className="inline-flex items-center justify-center w-20 h-20 rounded-2xl shadow-lg mb-4"
               />
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">NEQUPAY</h2>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">KOPAY</h2>
               <p className="text-gray-500 dark:text-gray-400 mt-2">支付API文档 · 请登录后查看</p>
             </div>
 
@@ -481,14 +481,14 @@ export default function PaymentDocPage() {
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <img 
-                      src="/neqpay-logo.png" 
-                      alt="NEQUPAY Logo" 
+                      src="/kopay-logo.png" 
+                      alt="KOPAY Logo" 
                       className="w-10 h-10 rounded-xl shadow-lg"
                     />
                     <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-slate-900"></div>
                   </div>
                   <div>
-                    <h1 className="text-lg font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">NEQUPAY</h1>
+                    <h1 className="text-lg font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">KOPAY</h1>
                     <p className="text-[10px] text-gray-500 dark:text-gray-400 -mt-0.5">支付API文档</p>
                   </div>
                 </div>
@@ -635,13 +635,13 @@ export default function PaymentDocPage() {
               </div>
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/neqpay-logo.png" 
-                  alt="NEQUPAY Logo" 
+                  src="/kopay-logo.png" 
+                  alt="KOPAY Logo" 
                   className="w-20 h-20 rounded-2xl shadow-xl"
                 />
               </div>
               <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-3 tracking-tight">
-                NEQUPAY 支付API
+                KOPAY 支付API
               </h1>
               <p className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto">
                 完整的支付系统API文档，包含传输规则、回调规则、签名算法以及各接口的详细说明
@@ -818,7 +818,7 @@ signMap.put("version", "1.0");`}
             <section id="collect-order" className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-slate-700 scroll-mt-20 transition-all hover:shadow-lg hover:shadow-blue-100/50 dark:hover:shadow-blue-900/20">
               <SectionHeader title="统一代收" badge="POST" />
               <ApiInfo rows={[
-                { label: '接口说明', value: '商户业务系统通过统一下单接口发起支付收款订单，NEQUPAY支付网关会根据商户配置的支付通道路由支付通道完成支付下单。' },
+                { label: '接口说明', value: '商户业务系统通过统一下单接口发起支付收款订单，KOPAY支付网关会根据商户配置的支付通道路由支付通道完成支付下单。' },
                 { label: '适用对象', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">普通商户</code></> },
                 { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono break-all">https://kopay.bet/api/pay/unifiedOrder</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
@@ -949,7 +949,7 @@ signMap.put("version", "1.0");`}
             <section id="transfer-order" className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-slate-700 scroll-mt-20 transition-all hover:shadow-lg hover:shadow-blue-100/50 dark:hover:shadow-blue-900/20">
               <SectionHeader title="统一代付" badge="POST" />
               <ApiInfo rows={[
-                { label: '接口说明', value: '商户业务系统通过转账接口发起转账申请，NEQUPAY支付网关将根据请求数据传入系统，进行转账。' },
+                { label: '接口说明', value: '商户业务系统通过转账接口发起转账申请，KOPAY支付网关将根据请求数据传入系统，进行转账。' },
                 { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://kopay.bet/api/transferOrder</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
@@ -1125,7 +1125,7 @@ signMap.put("version", "1.0");`}
             {/* Footer */}
             <div className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700 text-center">
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  NEQUPAY 支付API文档 · v1.0.0 · 持续更新中
+                  KOPAY 支付API文档 · v1.0.0 · 持续更新中
                 </p>
               </div>
             </div>
