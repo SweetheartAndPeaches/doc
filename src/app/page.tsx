@@ -573,60 +573,6 @@ export default function PaymentDocPage() {
             {/* Main content */}
             <main className="flex-1 lg:ml-64 min-h-[calc(100vh-3.5rem)]">
               <div className="max-w-4xl mx-auto px-6 py-10">
-
-                <div className="flex">
-                  {/* Sidebar */}
-        <aside className={cn(
-          'w-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-gray-100 dark:border-slate-800 fixed h-[calc(100vh-3.5rem)] overflow-y-auto z-40 transition-all duration-300',
-          'lg:block',
-          mobileMenuOpen ? 'block' : 'hidden'
-        )}>
-          <nav className="p-4">
-            {allSections.map((group, gIdx) => (
-              <div key={group.category} className="mb-4">
-                <div className="flex items-center gap-2 px-3 py-2 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
-                  <span className="w-5 h-5 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-md text-[9px] font-bold">
-                    {gIdx + 1}
-                  </span>
-                  {group.category}
-                </div>
-                {group.items.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={cn(
-                      'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 mb-0.5 group',
-                      activeSection === item.id
-                        ? 'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-blue-400 font-medium shadow-sm'
-                        : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 hover:text-gray-900 dark:hover:text-white'
-                    )}
-                  >
-                    <item.icon className={cn(
-                      'h-4 w-4 transition-transform group-hover:scale-110',
-                      activeSection === item.id ? 'text-blue-500 dark:text-blue-400' : ''
-                    )} />
-                    {item.title}
-                    {activeSection === item.id && (
-                      <ChevronRight className="h-3 w-3 ml-auto" />
-                    )}
-                  </button>
-                ))}
-              </div>
-            ))}
-          </nav>
-        </aside>
-
-        {/* Mobile overlay */}
-        {mobileMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
-
-        {/* Main content */}
-        <div className="flex-1 lg:ml-64 min-h-[calc(100vh-3.5rem)]">
-          <div className="max-w-4xl mx-auto px-6 py-10">
             {/* Page header */}
             <div className="mb-12 text-center">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-4">
@@ -1124,14 +1070,11 @@ signMap.put("version", "1.0");`}
 
             {/* Footer */}
             <div className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700 text-center">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  KOPAY 支付API文档 · v1.0.0 · 持续更新中
-                </p>
-              </div>
-            </div>
+              <p className="text-sm text-gray-500 dark:text-gray-400">
+                KOPAY 支付API文档 · v1.0.0 · 持续更新中
+              </p>
             </div>
           </div>
-        </div>
         </main>
       </div>
 
