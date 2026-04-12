@@ -11,6 +11,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
+// 登录配置 - 设置为true需要登录，设置false直接访问
+const REQUIRE_LOGIN = process.env.NEXT_PUBLIC_REQUIRE_LOGIN === 'true';
+
 // 登录凭证
 const VALID_USERNAME = 'kopay';
 const VALID_PASSWORD = '123456';
@@ -465,8 +468,8 @@ export default function PaymentDocPage() {
         </div>
       )}
 
-      {/* 已登录 - 显示文档内容 */}
-      {isLoggedIn && (
+      {/* 显示文档内容 */}
+      {(isLoggedIn || !REQUIRE_LOGIN) && (
         <>
           {/* Header */}
           <header className="sticky top-0 z-40 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-gray-100 dark:border-slate-800 shadow-sm">
