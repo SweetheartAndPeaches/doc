@@ -286,14 +286,6 @@ function SearchModal({ isOpen, onClose, onSelect }: { isOpen: boolean; onClose: 
     }
   }, [isOpen]);
 
-  const handleInputKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      onClose();
-      setQuery('');
-    }
-  };
-
   const results = query.trim()
     ? searchIndex.filter(item =>
         item.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -317,7 +309,6 @@ function SearchModal({ isOpen, onClose, onSelect }: { isOpen: boolean; onClose: 
             placeholder="搜索接口、字段..."
             value={query}
             onChange={e => setQuery(e.target.value)}
-            onKeyDown={handleInputKeyDown}
             className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-400"
           />
           <kbd className="px-2 py-1 text-xs bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 rounded">
@@ -439,16 +430,17 @@ export default function PaymentDocPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Keyboard shortcut
+  // Global keyboard shortcuts - must be first to capture all events
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // Close search on Escape
-      if (e.key === 'Escape') {
+      // ESC always closes search modal
+      if (e.key === 'Escape' && searchOpen) {
+        e.preventDefault();
         setSearchOpen(false);
       }
       
-      // Open search on /
-      if (e.key === '/' && !e.ctrlKey && !e.metaKey) {
+      // / opens search modal (only when not in input)
+      if (e.key === '/' && !searchOpen) {
         const target = e.target as HTMLElement;
         if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA') {
           e.preventDefault();
@@ -459,7 +451,7 @@ export default function PaymentDocPage() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [searchOpen]);
 
   const scrollToSection = useCallback((id: string) => {
     setActiveSection(id);
