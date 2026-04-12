@@ -4,44 +4,27 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: '新应用 | 扣子编程',
-    template: '%s | 扣子编程',
+    default: 'API 接口文档',
+    template: '%s | API 接口文档',
   },
   description:
-    '扣子编程是一款一站式云端 Vibe Coding 开发平台。通过对话轻松构建智能体、工作流和网站，实现从创意到上线的无缝衔接。',
+    '完整的 API 接口文档，包含认证授权、用户管理、订单管理、商品管理等模块的接口说明',
   keywords: [
-    '扣子编程',
-    'Coze Code',
-    'Vibe Coding',
-    'AI 编程',
-    '智能体搭建',
-    '工作流搭建',
-    '网站搭建',
-    '网站部署',
-    '全栈开发',
-    'AI 工程师',
+    'API',
+    '接口文档',
+    'REST API',
+    '开发者文档',
   ],
-  authors: [{ name: 'Coze Code Team', url: 'https://code.coze.cn' }],
-  generator: 'Coze Code',
-  // icons: {
-  //   icon: '',
-  // },
+  authors: [{ name: 'API Documentation Team' }],
+  generator: 'Next.js',
   openGraph: {
-    title: '扣子编程 | 你的 AI 工程师已就位',
+    title: 'API 接口文档',
     description:
-      '我正在使用扣子编程 Vibe Coding，让创意瞬间上线。告别拖拽，拥抱心流。',
-    url: 'https://code.coze.cn',
-    siteName: '扣子编程',
+      '完整的 API 接口文档，包含认证授权、用户管理、订单管理、商品管理等模块的接口说明',
+    url: 'https://api-docs.example.com',
+    siteName: 'API 接口文档',
     locale: 'zh_CN',
     type: 'website',
-    // images: [
-    //   {
-    //     url: '',
-    //     width: 1200,
-    //     height: 630,
-    //     alt: '扣子编程 - 你的 AI 工程师',
-    //   },
-    // ],
   },
   // twitter: {
   //   card: 'summary_large_image',
