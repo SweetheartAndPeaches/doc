@@ -2,13 +2,18 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  Menu, X, Copy, Check, Info, ArrowUp, Sun, Moon,
-  ChevronRight, Shield, CreditCard,
-  Send, RefreshCw, DollarSign, Bell, Settings, Zap, BookOpen, Search
+  Menu, X, Copy, Check, Info, ArrowUp, Sun, Moon, Lock, LogOut,
+  ChevronRight, Shield, CreditCard, User,
+  Send, RefreshCw, DollarSign, Bell, Settings, Zap, BookOpen, Search, AlertCircle
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+
+// 登录凭证
+const VALID_USERNAME = 'kopay';
+const VALID_PASSWORD = '123456';
 
 // Navigation sections with icons
 const sections = {
@@ -299,6 +304,10 @@ function TableOfContents({ activeSection }: { activeSection: string }) {
 
 // Main component
 export default function PaymentDocPage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
   const [activeSection, setActiveSection] = useState('transport');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -346,6 +355,25 @@ export default function PaymentDocPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // 登录处理
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+      setIsLoggedIn(true);
+      setLoginError('');
+      setPassword('');
+    } else {
+      setLoginError('用户名或密码错误');
+    }
+  };
+
+  // 登出处理
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUsername('');
+    setPassword('');
+  };
+
   const scrollToSection = useCallback((id: string) => {
     setActiveSection(id);
     const el = document.getElementById(id);
@@ -369,49 +397,181 @@ export default function PaymentDocPage() {
         />
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-40 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-gray-100 dark:border-slate-800 shadow-sm">
-        <div className="flex items-center justify-between h-14 px-4 lg:px-8">
-          <div className="flex items-center gap-4">
-            <button
-              className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-            <div className="flex items-center gap-3">
-              <div className="relative">
-                <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-500/20">
-                  API
-                </div>
-                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-slate-900"></div>
+      {/* 登录表单 */}
+      {!isLoggedIn && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800">
+          <div className="w-full max-w-md p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700">
+            <div className="text-center mb-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white text-xl font-bold rounded-2xl shadow-lg mb-4">
+                API
               </div>
-              <div>
-                <h1 className="text-lg font-bold text-gray-900 dark:text-white">NEQUPAY</h1>
-                <p className="text-[10px] text-gray-500 dark:text-gray-400 -mt-0.5">支付API文档</p>
-              </div>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">NEQUPAY 支付文档</h2>
+              <p className="text-gray-500 dark:text-gray-400 mt-2">请登录后查看文档</p>
             </div>
-          </div>
 
-          <div className="flex items-center gap-2">
-            <Badge variant="outline" className="hidden sm:flex items-center gap-1 px-2 py-1">
-              <BookOpen className="h-3 w-3" />
-              v1.0
-            </Badge>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleDarkMode}
-              className="rounded-lg"
-            >
-              {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  账户
+                </label>
+                <div className="relative">
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Input
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="请输入账户"
+                    className="pl-10 h-12"
+                    autoComplete="username"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  密码
+                </label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <Input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="请输入密码"
+                    className="pl-10 h-12"
+                    autoComplete="current-password"
+                  />
+                </div>
+              </div>
+
+              {loginError && (
+                <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400 text-sm">
+                  <AlertCircle className="h-4 w-4 flex-shrink-0" />
+                  {loginError}
+                </div>
+              )}
+
+              <Button type="submit" className="w-full h-12 text-base font-medium bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 shadow-lg">
+                登录
+              </Button>
+            </form>
+
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
+              测试账户：kopay / 123456
+            </p>
           </div>
         </div>
-      </header>
+      )}
 
-      <div className="flex">
-        {/* Sidebar */}
+      {/* 已登录 - 显示文档内容 */}
+      {isLoggedIn && (
+        <>
+          {/* Header */}
+          <header className="sticky top-0 z-40 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-gray-100 dark:border-slate-800 shadow-sm">
+            <div className="flex items-center justify-between h-14 px-4 lg:px-8">
+              <div className="flex items-center gap-4">
+                <button
+                  className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                  {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                </button>
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <div className="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-500/20">
+                      API
+                    </div>
+                    <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-slate-900"></div>
+                  </div>
+                  <div>
+                    <h1 className="text-lg font-bold text-gray-900 dark:text-white">NEQUPAY</h1>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-400 -mt-0.5">支付API文档</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <Badge variant="outline" className="hidden sm:flex items-center gap-1 px-2 py-1">
+                  <BookOpen className="h-3 w-3" />
+                  v1.0
+                </Badge>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleDarkMode}
+                  className="rounded-lg"
+                >
+                  {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="gap-2 text-gray-500 hover:text-red-500"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span className="hidden sm:inline">退出</span>
+                </Button>
+              </div>
+            </div>
+          </header>
+
+          <div className="flex">
+            {/* Sidebar */}
+            <aside className={cn(
+              'w-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-gray-100 dark:border-slate-800 fixed h-[calc(100vh-3.5rem)] overflow-y-auto z-40 transition-all duration-300',
+              'lg:block',
+              mobileMenuOpen ? 'block' : 'hidden'
+            )}>
+              <nav className="p-4">
+                {allSections.map((group, gIdx) => (
+                  <div key={group.category} className="mb-4">
+                    <div className="flex items-center gap-2 px-3 py-2 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
+                      <span className="w-5 h-5 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-500 text-white rounded-md text-[9px] font-bold">
+                        {gIdx + 1}
+                      </span>
+                      {group.category}
+                    </div>
+                    {group.items.map((item) => (
+                      <button
+                        key={item.id}
+                        onClick={() => scrollToSection(item.id)}
+                        className={cn(
+                          'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 mb-0.5 group',
+                          activeSection === item.id
+                            ? 'bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-600 dark:text-blue-400 font-medium shadow-sm'
+                            : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-slate-800/50 hover:text-gray-900 dark:hover:text-white'
+                        )}
+                      >
+                        <item.icon className={cn(
+                          'h-4 w-4 transition-transform group-hover:scale-110',
+                          activeSection === item.id ? 'text-blue-500 dark:text-blue-400' : ''
+                        )} />
+                        {item.title}
+                        {activeSection === item.id && (
+                          <ChevronRight className="h-3 w-3 ml-auto" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                ))}
+              </nav>
+            </aside>
+
+            {/* Mobile overlay */}
+            {mobileMenuOpen && (
+              <div
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 lg:hidden"
+                onClick={() => setMobileMenuOpen(false)}
+              />
+            )}
+
+            {/* Main content */}
+            <main className="flex-1 lg:ml-64 min-h-[calc(100vh-3.5rem)]">
+              <div className="max-w-4xl mx-auto px-6 py-10">
+
+                <div className="flex">
+                  {/* Sidebar */}
         <aside className={cn(
           'w-64 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-r border-gray-100 dark:border-slate-800 fixed h-[calc(100vh-3.5rem)] overflow-y-auto z-40 transition-all duration-300',
           'lg:block',
@@ -461,7 +621,7 @@ export default function PaymentDocPage() {
         )}
 
         {/* Main content */}
-        <main className="flex-1 lg:ml-64 min-h-[calc(100vh-3.5rem)]">
+        <div className="flex-1 lg:ml-64 min-h-[calc(100vh-3.5rem)]">
           <div className="max-w-4xl mx-auto px-6 py-10">
             {/* Page header */}
             <div className="mb-12 text-center">
@@ -953,13 +1113,34 @@ signMap.put("version", "1.0");`}
 
             {/* Footer */}
             <div className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700 text-center">
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                NEQUPAY 支付API文档 · v1.0.0 · 持续更新中
-              </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  NEQUPAY 支付API文档 · v1.0.0 · 持续更新中
+                </p>
+              </div>
+            </div>
             </div>
           </div>
+        </div>
         </main>
       </div>
+
+      {/* Table of contents */}
+      <TableOfContents activeSection={activeSection} />
+
+      {/* Back to top button */}
+      <Button
+        variant="default"
+        size="icon"
+        onClick={backToTop}
+        className={cn(
+          'fixed bottom-6 right-6 rounded-full shadow-lg transition-all duration-300 z-30',
+          showBackToTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        )}
+      >
+        <ArrowUp className="h-4 w-4" />
+      </Button>
+      </>
+      )}
 
       {/* Table of contents */}
       <TableOfContents activeSection={activeSection} />
