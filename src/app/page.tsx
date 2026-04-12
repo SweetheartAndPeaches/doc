@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  Menu, X, Search, Copy, Check, Info, ArrowUp, Sun, Moon,
-  ChevronRight, FileText, Shield, CreditCard,
-  Send, RefreshCw, DollarSign, Bell, Settings, Zap, BookOpen
+  Menu, X, Copy, Check, Info, ArrowUp, Sun, Moon,
+  ChevronRight, Shield, CreditCard,
+  Send, RefreshCw, DollarSign, Bell, Settings, Zap, BookOpen, Search
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -38,21 +38,6 @@ const allSections = [
   { category: '代收接口', items: sections.collect },
   { category: '代付接口', items: sections.transfer },
   { category: '查询接口', items: sections.query },
-];
-
-// Search index data
-const searchIndex = [
-  { id: 'transport', title: '传输规则', keywords: ['http', 'https', 'post', 'get', 'content-type', '编码', '签名'], category: '基础规则' },
-  { id: 'callback', title: '回调规则', keywords: ['回调', 'post', 'application/x-www-form-urlencoded', '通知'], category: '基础规则' },
-  { id: 'params', title: '参数规范', keywords: ['金额', '分', '时间', '时间戳', '毫秒'], category: '基础规则' },
-  { id: 'signature', title: '签名算法', keywords: ['md5', '签名', 'ascii', '字典序', 'stringA', 'key'], category: '基础规则' },
-  { id: 'collect-order', title: '统一代收', keywords: ['mchNo', 'appId', 'wayCode', 'amount', 'currency', 'unifiedOrder', '代收'], category: '代收接口' },
-  { id: 'collect-query', title: '查询代收订单', keywords: ['query', 'payOrderId', 'mchOrderNo', '查询', '订单'], category: '代收接口' },
-  { id: 'collect-notify', title: '支付通知', keywords: ['notify', '回调', 'success', '通知', 'state', '状态'], category: '代收接口' },
-  { id: 'transfer-order', title: '统一代付', keywords: ['transfer', '转账', 'ifCode', 'accountNo', 'bankName', '代付'], category: '代付接口' },
-  { id: 'transfer-query', title: '查询代付订单', keywords: ['transferId', '查询', '转账订单'], category: '代付接口' },
-  { id: 'transfer-notify', title: '转账通知', keywords: ['notify', '转账通知', '回调', 'success'], category: '代付接口' },
-  { id: 'balance-query', title: '余额查询', keywords: ['balance', '余额', '账户余额'], category: '查询接口' },
 ];
 
 // Code block component with enhanced copy
@@ -274,74 +259,6 @@ function SectionDivider({ text }: { text: string }) {
   );
 }
 
-// Search modal component
-function SearchModal({ isOpen, onClose, onSelect }: { isOpen: boolean; onClose: () => void; onSelect: (id: string) => void }) {
-  const [query, setQuery] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      setQuery('');
-      setTimeout(() => inputRef.current?.focus(), 50);
-    }
-  }, [isOpen]);
-
-  const results = query.trim()
-    ? searchIndex.filter(item =>
-        item.title.toLowerCase().includes(query.toLowerCase()) ||
-        item.keywords.some(k => k.toLowerCase().includes(query.toLowerCase())) ||
-        item.id.toLowerCase().includes(query.toLowerCase())
-      )
-    : searchIndex.slice(0, 6);
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]" onClick={onClose}>
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-      <div
-        className="relative w-full max-w-xl bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden"
-        onClick={e => e.stopPropagation()}
-      >
-        <div className="flex items-center gap-3 p-4 border-b border-gray-100 dark:border-slate-700">
-          <Search className="h-5 w-5 text-gray-400" />
-          <input
-            ref={inputRef}
-            type="text"
-            placeholder="搜索接口、字段..."
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            className="flex-1 bg-transparent outline-none text-gray-900 dark:text-white placeholder-gray-400"
-          />
-          <kbd className="px-2 py-1 text-xs bg-gray-100 dark:bg-slate-700 text-gray-500 dark:text-gray-400 rounded">
-            ESC
-          </kbd>
-        </div>
-        <div className="max-h-80 overflow-y-auto p-2">
-          {results.length === 0 ? (
-            <div className="p-4 text-center text-gray-500 dark:text-gray-400">
-              未找到匹配结果
-            </div>
-          ) : (
-            results.map(item => (
-              <button
-                key={item.id}
-                onClick={() => { onSelect(item.id); onClose(); }}
-                className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-700/50 transition-colors text-left"
-              >
-                <FileText className="h-4 w-4 text-gray-400" />
-                <div className="flex-1">
-                  <div className="font-medium text-gray-900 dark:text-white">{item.title}</div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">{item.category}</div>
-                </div>
-                <ChevronRight className="h-4 w-4 text-gray-300" />
-              </button>
-            ))
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 // Table of contents component
 function TableOfContents({ activeSection }: { activeSection: string }) {
   return (
@@ -385,7 +302,6 @@ export default function PaymentDocPage() {
   const [activeSection, setActiveSection] = useState('transport');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
@@ -429,29 +345,6 @@ export default function PaymentDocPage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Global keyboard shortcuts - must be first to capture all events
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // ESC always closes search modal
-      if (e.key === 'Escape' && searchOpen) {
-        e.preventDefault();
-        setSearchOpen(false);
-      }
-      
-      // / opens search modal (only when not in input)
-      if (e.key === '/' && !searchOpen) {
-        const target = e.target as HTMLElement;
-        if (target.tagName !== 'INPUT' && target.tagName !== 'TEXTAREA') {
-          e.preventDefault();
-          setSearchOpen(true);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [searchOpen]);
 
   const scrollToSection = useCallback((id: string) => {
     setActiveSection(id);
@@ -499,18 +392,6 @@ export default function PaymentDocPage() {
               </div>
             </div>
           </div>
-
-          {/* Search button */}
-          <button
-            onClick={() => setSearchOpen(true)}
-            className="flex items-center gap-2 px-3 py-1.5 bg-gray-100 dark:bg-slate-800 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
-          >
-            <Search className="h-4 w-4" />
-            <span className="hidden sm:inline">搜索文档...</span>
-            <kbd className="hidden sm:inline px-1.5 py-0.5 text-xs bg-white dark:bg-slate-700 rounded border border-gray-200 dark:border-slate-600">
-              /
-            </kbd>
-          </button>
 
           <div className="flex items-center gap-2">
             <Badge variant="outline" className="hidden sm:flex items-center gap-1 px-2 py-1">
@@ -1079,9 +960,6 @@ signMap.put("version", "1.0");`}
           </div>
         </main>
       </div>
-
-      {/* Search modal */}
-      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} onSelect={scrollToSection} />
 
       {/* Table of contents */}
       <TableOfContents activeSection={activeSection} />
