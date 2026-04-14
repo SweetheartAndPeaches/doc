@@ -32,9 +32,9 @@ const sections = {
     { id: 'collect-notify', title: '支付通知', icon: Bell },
   ],
   transfer: [
-    { id: 'transfer-order', title: '统一代付', icon: CreditCard },
+    { id: 'transfer-order', title: '代付申请', icon: CreditCard },
     { id: 'transfer-query', title: '查询订单', icon: Search },
-    { id: 'transfer-notify', title: '转账通知', icon: Bell },
+    { id: 'transfer-notify', title: '代付回调', icon: Bell },
   ],
   query: [
     { id: 'balance-query', title: '余额查询', icon: DollarSign },
@@ -896,11 +896,11 @@ signMap.put("version", "1.0");`}
             {/* ==================== 代付接口部分 ==================== */}
             <SectionDivider text="代付接口" />
 
-            {/* 统一代付 */}
+            {/* 代付申请 */}
             <section id="transfer-order" className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-slate-700 scroll-mt-20 transition-all hover:shadow-lg hover:shadow-blue-100/50 dark:hover:shadow-blue-900/20">
-              <SectionHeader title="统一代付" badge="POST" />
+              <SectionHeader title="代付申请" badge="POST" />
               <ApiInfo rows={[
-                { label: '接口说明', value: '商户业务系统通过转账接口发起转账申请，KOPAY支付网关将根据请求数据传入系统，进行转账。' },
+                { label: '接口说明', value: '商户通过代付接口发起转账申请，KOPAY支付网关将根据请求数据处理转账。' },
                 { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://kopay.bet/api/transferOrder</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
@@ -984,25 +984,34 @@ signMap.put("version", "1.0");`}
 
             {/* 转账通知 */}
             <section id="transfer-notify" className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-slate-700 scroll-mt-20 transition-all hover:shadow-lg hover:shadow-blue-100/50 dark:hover:shadow-blue-900/20">
-              <SectionHeader title="转账通知" badge="回调" isCallback />
+              <SectionHeader title="代付回调通知" badge="回调" isCallback />
               <ApiInfo rows={[
-                { label: '接口说明', value: '当转账完成时(成功或失败)，支付网关会向商户系统发起回调通知。如果商户系统没有正确返回，支付网关会延迟再次通知。' },
-                { label: '请求URL', value: '该链接是通过转账申请接口提交的参数notifyUrl设置' },
-                { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
-                { label: '请求类型', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">application/x-www-form-urlencoded</code></> },
+                { label: '接口说明', value: '当代付完成时(成功或失败)，支付网关会向商户系统发起回调通知。如果商户系统没有正确返回，支付网关会延迟再次通知。' },
+                { label: '回调URL', value: '由支付网关根据商户配置自动回调，如：https://www.xxx.com/pay/nequ/drawNotify' },
+                { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">GET</code></> },
               ]} />
-              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">通知参数</h4>
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">回调参数</h4>
               <ParamTable data={[
-                { name: '商户号', field: 'mchNo', required: true, type: 'String(30)', example: 'M1621873433953', description: '商户号' },
-                { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID' },
-                { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '商户生成的转账订单号' },
-                { name: '转账订单号', field: 'transferId', required: true, type: 'String(30)', example: 'T20160427210604000490', description: '支付中心生成的转账单号' },
-                { name: '转账金额', field: 'amount', required: true, type: 'int', example: '100', description: '转账金额,单位分' },
-                { name: '转账状态', field: 'state', required: true, type: 'int', example: '2', description: '0-订单生成 1-转账中 2-转账成功 3-转账失败 4-转账关闭' },
-                { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: 'o6BcIwvTohc61biryWik', description: '收款账户' },
-                { name: '收款人姓名', field: 'accountName', required: true, type: 'String(64)', example: 'payerName', description: '收款账户姓名' },
-                { name: '签名', field: 'sign', required: true, type: 'String', example: 'B23F3B7F8...', description: '签名值，详见签名算法' },
+                { name: '商户号', field: 'mchNo', required: true, type: 'String', example: 'ber888', description: '商户号' },
+                { name: '应用ID', field: 'appId', required: true, type: 'String', example: '69b512c6e4b057f50d49a28b', description: '应用ID' },
+                { name: '接口代码', field: 'ifCode', required: true, type: 'String', example: 'colombia', description: '接口代码' },
+                { name: '入账方式', field: 'entryType', required: true, type: 'String', example: 'BANK_CARD', description: '入账方式' },
+                { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String', example: '20260414288394338338U21984', description: '商户生成的代付订单号' },
+                { name: '代付订单号', field: 'transferId', required: true, type: 'String', example: 'T2044143312974770177', description: '支付中心生成的代付订单号' },
+                { name: '代付金额', field: 'amount', required: true, type: 'long', example: '1012500', description: '代付金额，单位为分' },
+                { name: '收款账号', field: 'accountNo', required: true, type: 'String', example: '3114538926', description: '收款账户' },
+                { name: '收款人姓名', field: 'accountName', required: true, type: 'String', example: 'Duvier', description: '收款人姓名' },
+                { name: '银行名称', field: 'bankName', required: true, type: 'String', example: 'Bank', description: '银行名称' },
+                { name: '货币代码', field: 'currency', required: true, type: 'String', example: 'COP', description: '货币代码' },
+                { name: '代付状态', field: 'state', required: true, type: 'int', example: '2', description: '0-订单生成 1-转账中 2-转账成功 3-转账失败 4-转账关闭' },
+                { name: '转账备注', field: 'transferDesc', required: false, type: 'String', example: 'bertransfer', description: '转账备注' },
+                { name: '创建时间', field: 'createdAt', required: true, type: 'long', example: '1776196718816', description: '订单创建时间，13位时间戳' },
+                { name: '回调时间', field: 'reqTime', required: true, type: 'long', example: '1776196989494', description: '回调时间，13位时间戳' },
+                { name: '签名', field: 'sign', required: true, type: 'String', example: '4B0D2A4DE7D0D7FBF0DECCC003364D85', description: '签名值，详见签名算法' },
               ]} />
+              <CodeBlock lang="TEXT" title="回调示例">
+{`https://www.xxx.com/pay/nequ/drawNotify?ifCode=colombia&entryType=BANK_CARD&amount=1012500&accountName=Duvier&mchOrderNo=20260414288394338338U21984&sign=4B0D2A4DE7D0D7FBF0DECCC003364D85&transferDesc=bertransfer&bankName=Bank&reqTime=1776196989494&transferId=T2044143312974770177&createdAt=1776196718816&accountNo=3114538926&appId=69b512c6e4b057f50d49a28b&currency=COP&state=2&mchNo=ber888`}
+              </CodeBlock>
               <NoticeBox type="warning">
                 <p>业务系统处理后同步返回给支付中心，返回字符串 <code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">success</code> 则表示成功，返回非success则表示处理失败，支付中心会再次通知业务系统。</p>
                 <p className="mt-2">通知频率为0/30/60/90/120/150,单位：秒</p>
