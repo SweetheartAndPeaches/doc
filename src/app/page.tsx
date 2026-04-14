@@ -29,7 +29,7 @@ const sections = {
   collect: [
     { id: 'collect-order', title: '统一代收', icon: Send },
     { id: 'collect-query', title: '查询订单', icon: Search },
-    { id: 'collect-notify', title: '支付通知', icon: Bell },
+    { id: 'collect-notify', title: '代收回调', icon: Bell },
   ],
   transfer: [
     { id: 'transfer-order', title: '代付申请', icon: CreditCard },
@@ -869,23 +869,33 @@ signMap.put("version", "1.0");`}
 
             {/* 支付通知 */}
             <section id="collect-notify" className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-slate-700 scroll-mt-20 transition-all hover:shadow-lg hover:shadow-blue-100/50 dark:hover:shadow-blue-900/20">
-              <SectionHeader title="支付通知" badge="回调" isCallback />
+              <SectionHeader title="代收回调" badge="回调" isCallback />
               <ApiInfo rows={[
                 { label: '接口说明', value: '当订单支付成功时，支付网关会向商户系统发起回调通知。如果商户系统没有正确返回，支付网关会延迟再次通知。' },
-                { label: '请求URL', value: '该链接是通过统一下单接口提交的参数notifyUrl设置' },
-                { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
-                { label: '请求类型', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">application/x-www-form-urlencoded</code></> },
+                { label: '回调URL', value: '由支付网关根据商户配置自动回调，如：https://www.xxx.com/pay/Kopay/payNotify' },
+                { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">GET</code></> },
               ]} />
-              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">通知参数</h4>
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">回调参数</h4>
               <ParamTable data={[
-                { name: '支付订单号', field: 'payOrderId', required: true, type: 'String(30)', example: 'P12021022311124442600', description: '返回支付系统订单号' },
-                { name: '商户号', field: 'mchNo', required: true, type: 'String(30)', example: 'M1621873433953', description: '商户号' },
-                { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID' },
-                { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '返回商户传入的订单号' },
-                { name: '支付金额', field: 'amount', required: true, type: 'int', example: '100', description: '支付金额,单位分' },
+                { name: '商户号', field: 'mchNo', required: true, type: 'String', example: 'hcm888', description: '商户号' },
+                { name: '应用ID', field: 'appId', required: true, type: 'String', example: '69b964c6e4b057f50d49a28d', description: '应用ID' },
+                { name: '接口代码', field: 'ifCode', required: true, type: 'String', example: 'colombia', description: '接口代码' },
+                { name: '支付订单号', field: 'payOrderId', required: true, type: 'String', example: 'P2044142100586033154', description: '支付中心生成的订单号' },
+                { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String', example: 'K1776196428U12446', description: '商户传入的订单号' },
+                { name: '支付金额', field: 'amount', required: true, type: 'long', example: '10500000', description: '支付金额，单位为分' },
+                { name: '货币代码', field: 'currency', required: true, type: 'String', example: 'COP', description: '货币代码' },
+                { name: '支付方式', field: 'wayCode', required: true, type: 'String', example: 'COLOMBIA_QR', description: '支付方式代码' },
                 { name: '订单状态', field: 'state', required: true, type: 'int', example: '2', description: '0-订单生成 1-支付中 2-支付成功 3-支付失败 4-已撤销 5-已退款 6-订单关闭' },
-                { name: '签名', field: 'sign', required: true, type: 'String(32)', example: 'C380BEC2...', description: '签名值，详见签名算法' },
+                { name: '商品标题', field: 'subject', required: true, type: 'String', example: 'ber', description: '商品标题' },
+                { name: '商品描述', field: 'body', required: false, type: 'String', example: 'ber', description: '商品描述' },
+                { name: '客户端IP', field: 'clientIp', required: false, type: 'String', example: '15.228.226.143', description: '客户端IP地址' },
+                { name: '创建时间', field: 'createdAt', required: true, type: 'long', example: '1776196429760', description: '订单创建时间，13位时间戳' },
+                { name: '回调时间', field: 'reqTime', required: true, type: 'long', example: '1776196838883', description: '回调时间，13位时间戳' },
+                { name: '签名', field: 'sign', required: true, type: 'String', example: 'CB8B5569E531B54324C94AED0B02D3FC', description: '签名值，详见签名算法' },
               ]} />
+              <CodeBlock lang="TEXT" title="回调示例">
+{`https://www.xxx.com/pay/Kopay/payNotify?ifCode=colombia&amount=10500000&payOrderId=P2044142100586033154&mchOrderNo=K1776196428U12446&subject=ber&wayCode=COLOMBIA_QR&sign=CB8B5569E531B54324C94AED0B02D3FC&reqTime=1776196838883&body=ber&createdAt=1776196429760&appId=69b964c6e4b057f50d49a28d&clientIp=15.228.226.143&currency=COP&state=2&mchNo=hcm888`}
+              </CodeBlock>
               <NoticeBox type="warning">
                 <p>业务系统处理后同步返回给支付中心，返回字符串 <code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">success</code> 则表示成功，返回非success则表示处理失败，支付中心会再次通知业务系统。</p>
                 <p className="mt-2">通知频率为0/30/60/90/120/150,单位：秒</p>
