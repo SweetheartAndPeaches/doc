@@ -771,7 +771,7 @@ signMap.put("version", "1.0");`}
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户业务系统通过统一下单接口发起支付收款订单，AKPAY支付网关会根据商户配置的支付通道路由支付通道完成支付下单。' },
                 { label: '适用对象', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">普通商户</code></> },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono break-all">https://akpay.bet/api/pay/unifiedOrder</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono break-all">https://akpay.top/api/pay/unifiedOrder</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
                 { label: '请求类型', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">application/json</code> <span className="text-gray-400 mx-1">/</span> <code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">form-urlencoded</code></> },
               ]} />
@@ -809,7 +809,7 @@ signMap.put("version", "1.0");`}
   "version": "1.0",
   "appId": "60cc09bce4b0f1c0b83761c9",
   "clientIp": "192.166.1.132",
-  "notifyUrl": "https://www.akpay.bet",
+  "notifyUrl": "https://www.akpay.top",
   "signType": "MD5",
   "currency": "cny",
   "mchNo": "M1623984572"
@@ -851,7 +851,7 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="查询代收订单" badge="POST" />
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户通过该接口查询订单，支付网关会返回订单最新的数据' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.bet/api/pay/query</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.top/api/pay/query</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
@@ -911,7 +911,7 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="代付申请" badge="POST" />
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户通过代付接口发起转账申请，AKPAY支付网关将根据请求数据处理转账。' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.bet/api/transferOrder</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.top/api/transferOrder</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
@@ -976,7 +976,7 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="查询代付订单" badge="POST" />
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户通过该接口查询订单，支付网关会返回订单最新的数据' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.bet/api/transfer/query</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.top/api/transfer/query</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
@@ -1037,7 +1037,7 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="余额查询" badge="POST" />
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户通过该接口查询账户余额，支付网关会返回账户最新的余额' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.bet/api/query/balance</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://akpay.top/api/query/balance</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
