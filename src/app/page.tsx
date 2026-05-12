@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
 const REQUIRE_LOGIN = process.env.NEXT_PUBLIC_REQUIRE_LOGIN === 'true';
 
 // 登录凭证
-const VALID_USERNAME = 'kopay';
+const VALID_USERNAME = 'pkpay';
 const VALID_PASSWORD = '123456';
 
 // Navigation sections with icons
@@ -406,11 +406,11 @@ export default function PaymentDocPage() {
           <div className="w-full max-w-md p-8 bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 dark:border-slate-700">
             <div className="text-center mb-8">
               <img 
-                src="/kopay-logo.png" 
-                alt="KOPAY Logo" 
+                src="/pkpay-logo.png" 
+                alt="PKPAY Logo" 
                 className="inline-flex items-center justify-center w-20 h-20 rounded-2xl shadow-lg mb-4"
               />
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">KOPAY</h2>
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">PKPAY</h2>
               <p className="text-gray-500 dark:text-gray-400 mt-2">支付API文档 · 请登录后查看</p>
             </div>
 
@@ -462,7 +462,7 @@ export default function PaymentDocPage() {
             </form>
 
             <p className="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
-              测试账户：kopay / 123456
+              测试账户：pkpay / 123456
             </p>
           </div>
         </div>
@@ -484,14 +484,14 @@ export default function PaymentDocPage() {
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <img 
-                      src="/kopay-logo.png" 
-                      alt="KOPAY Logo" 
+                      src="/pkpay-logo.png" 
+                      alt="PKPAY Logo" 
                       className="w-10 h-10 rounded-xl shadow-lg"
                     />
                     <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-slate-900"></div>
                   </div>
                   <div>
-                    <h1 className="text-lg font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">KOPAY</h1>
+                    <h1 className="text-lg font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">PKPAY</h1>
                     <p className="text-[10px] text-gray-500 dark:text-gray-400 -mt-0.5">支付API文档</p>
                   </div>
                 </div>
@@ -586,13 +586,13 @@ export default function PaymentDocPage() {
               </div>
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/kopay-logo.png" 
-                  alt="KOPAY Logo" 
+                  src="/pkpay-logo.png" 
+                  alt="PKPAY Logo" 
                   className="w-20 h-20 rounded-2xl shadow-xl"
                 />
               </div>
               <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-3 tracking-tight">
-                KOPAY 支付API
+                PKPAY 支付API
               </h1>
               <p className="text-gray-500 dark:text-gray-400 leading-relaxed max-w-2xl mx-auto">
                 完整的支付系统API文档，包含传输规则、回调规则、签名算法以及各接口的详细说明
@@ -769,9 +769,9 @@ signMap.put("version", "1.0");`}
             <section id="collect-order" className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-slate-700 scroll-mt-20 transition-all hover:shadow-lg hover:shadow-blue-100/50 dark:hover:shadow-blue-900/20">
               <SectionHeader title="统一代收" badge="POST" />
               <ApiInfo rows={[
-                { label: '接口说明', value: '商户业务系统通过统一下单接口发起支付收款订单，KOPAY支付网关会根据商户配置的支付通道路由支付通道完成支付下单。' },
+                { label: '接口说明', value: '商户业务系统通过统一下单接口发起支付收款订单，PKPAY支付网关会根据商户配置的支付通道路由支付通道完成支付下单。' },
                 { label: '适用对象', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">普通商户</code></> },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono break-all">https://kopay.bet/api/pay/unifiedOrder</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono break-all">https://pkpay.vip/api/pay/unifiedOrder</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
                 { label: '请求类型', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">application/json</code> <span className="text-gray-400 mx-1">/</span> <code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">form-urlencoded</code></> },
               ]} />
@@ -809,7 +809,7 @@ signMap.put("version", "1.0");`}
   "version": "1.0",
   "appId": "60cc09bce4b0f1c0b83761c9",
   "clientIp": "192.166.1.132",
-  "notifyUrl": "https://www.kopay.bet",
+  "notifyUrl": "https://www.pkpay.vip",
   "signType": "MD5",
   "currency": "cny",
   "mchNo": "M1623984572"
@@ -851,7 +851,7 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="查询代收订单" badge="POST" />
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户通过该接口查询订单，支付网关会返回订单最新的数据' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://kopay.bet/api/pay/query</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://pkpay.vip/api/pay/query</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
@@ -910,8 +910,8 @@ signMap.put("version", "1.0");`}
             <section id="transfer-order" className="bg-white/80 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-sm border border-gray-100 dark:border-slate-700 scroll-mt-20 transition-all hover:shadow-lg hover:shadow-blue-100/50 dark:hover:shadow-blue-900/20">
               <SectionHeader title="代付申请" badge="POST" />
               <ApiInfo rows={[
-                { label: '接口说明', value: '商户通过代付接口发起转账申请，KOPAY支付网关将根据请求数据处理转账。' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://kopay.bet/api/transferOrder</code></> },
+                { label: '接口说明', value: '商户通过代付接口发起转账申请，PKPAY支付网关将根据请求数据处理转账。' },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://pkpay.vip/api/transferOrder</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
@@ -976,7 +976,7 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="查询代付订单" badge="POST" />
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户通过该接口查询订单，支付网关会返回订单最新的数据' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://kopay.bet/api/transfer/query</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://pkpay.vip/api/transfer/query</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
@@ -1037,7 +1037,7 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="余额查询" badge="POST" />
               <ApiInfo rows={[
                 { label: '接口说明', value: '商户通过该接口查询账户余额，支付网关会返回账户最新的余额' },
-                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://kopay.bet/api/query/balance</code></> },
+                { label: '请求URL', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">https://pkpay.vip/api/query/balance</code></> },
                 { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求参数</h4>
@@ -1095,7 +1095,7 @@ signMap.put("version", "1.0");`}
             {/* Footer */}
             <div className="mt-16 pt-8 border-t border-gray-200 dark:border-slate-700 text-center">
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                KOPAY 支付API文档 · v1.0.0 · 持续更新中
+                PKPAY 支付API文档 · v1.0.0 · 持续更新中
               </p>
             </div>
           </div>
