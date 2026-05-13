@@ -919,15 +919,15 @@ signMap.put("version", "1.0");`}
                 { name: '商户号', field: 'mchNo', required: true, type: 'String(30)', example: 'M1621873433953', description: '商户号' },
                 { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID' },
                 { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '商户订单号' },
-                { name: '接口代码', field: 'ifCode', required: true, type: 'String(10)', example: 'colombia', description: '填接口代码,详细见下方接口代码表' },
-                { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: 'BANK_CARD', description: '固定：BANK_CARD' },
-                { name: '转账金额', field: 'amount', required: true, type: 'int', example: '100', description: '转账金额单位分' },
+                { name: '接口代码', field: 'ifCode', required: true, type: 'String(10)', example: 'india', description: '填接口代码,详细见下方接口代码表' },
+                { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: 'BANK_CARD', description: '固定：BANK_CARD（所有国家通用）' },
+                { name: '转账金额', field: 'amount', required: true, type: 'int', example: '10000', description: '转账金额，单位：分（印度：派萨，10000 = ₹100.00）' },
                 { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'INR', description: '印度固定：INR' },
-                { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: 'o6BcIwvTvI...', description: '收款账户' },
-                { name: '收款人姓名', field: 'accountName', required: true, type: 'String(64)', example: 'payName', description: '收款人名称' },
-                { name: '扩展参数', field: 'extParam', required: false, type: 'String(64)', example: 'CCI', description: '哥伦比亚不填 秘鲁支付必填：CCI' },
-                { name: '银行名称', field: 'bankName', required: true, type: 'String(64)', example: 'BCP', description: '填银行名称,详细见下方银行名称表' },
-                { name: '转账备注', field: 'transferDesc', required: true, type: 'String(128)', example: '测试转账', description: '转账备注' },
+                { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: '123456789012', description: '收款账户' },
+                { name: '收款人姓名', field: 'accountName', required: true, type: 'String(64)', example: 'Rajesh Kumar', description: '收款人名称' },
+                { name: '扩展参数', field: 'extParam', required: false, type: 'String(64)', example: '-', description: '印度不填（哥伦比亚/秘鲁使用）' },
+                { name: '银行名称', field: 'bankName', required: true, type: 'String(64)', example: 'SBI', description: '填银行名称, 印度详见下方银行名称表' },
+                { name: '转账备注', field: 'transferDesc', required: true, type: 'String(128)', example: 'Salary payment', description: '转账备注' },
                 { name: '异步通知地址', field: 'notifyUrl', required: false, type: 'String(128)', example: 'https://...', description: '转账完成后回调该URL' },
                 { name: '请求时间', field: 'reqTime', required: true, type: 'long', example: '1622016572190', description: '请求接口时间,13位时间戳' },
                 { name: '接口版本', field: 'version', required: true, type: 'String(3)', example: '1.0', description: '接口版本号，固定：1.0' },
@@ -939,21 +939,74 @@ signMap.put("version", "1.0");`}
               <ParamTable compact data={[
                 { name: 'colombia', field: '-', required: false, type: '-', example: '-', description: '哥伦比亚' },
                 { name: 'miluru', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
+                { name: 'india', field: '-', required: false, type: '-', example: '-', description: '印度' },
               ]} />
 
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">货币代码表</h4>
               <ParamTable compact data={[
+                { name: 'COP', field: '-', required: false, type: '-', example: '-', description: '哥伦比亚' },
+                { name: 'PEN', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
                 { name: 'INR', field: '-', required: false, type: '-', example: '-', description: '印度' },
               ]} />
 
-              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">银行名称表</h4>
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">银行名称表（印度常见银行）</h4>
               <ParamTable compact data={[
-                { name: 'Plin', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
-                { name: 'BCP', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
-                { name: 'Yape', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
-                { name: 'BBVA', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
-                { name: 'Scotiabank', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
-                { name: 'Interbank', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
+                { name: 'SBI', field: '-', required: false, type: '-', example: '-', description: 'State Bank of India' },
+                { name: 'HDFC', field: '-', required: false, type: '-', example: '-', description: 'HDFC Bank' },
+                { name: 'ICICI', field: '-', required: false, type: '-', example: '-', description: 'ICICI Bank' },
+                { name: 'Axis', field: '-', required: false, type: '-', example: '-', description: 'Axis Bank' },
+                { name: 'Kotak', field: '-', required: false, type: '-', example: '-', description: 'Kotak Mahindra Bank' },
+                { name: 'PNB', field: '-', required: false, type: '-', example: '-', description: 'Punjab National Bank' },
+                { name: 'BOB', field: '-', required: false, type: '-', example: '-', description: 'Bank of Baroda' },
+                { name: 'Canara', field: '-', required: false, type: '-', example: '-', description: 'Canara Bank' },
+                { name: 'YES', field: '-', required: false, type: '-', example: '-', description: 'YES Bank' },
+                { name: 'UBI', field: '-', required: false, type: '-', example: '-', description: 'Union Bank of India' },
+              ]} />
+              <NoticeBox type="info">
+                印度的 bankName 字段用于记录银行信息，不参与第三方API调用。任何有效的印度银行名称均可使用。
+              </NoticeBox>
+
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求示例 - 印度</h4>
+              <CodeBlock lang="JSON" title="印度代付请求示例">
+{`{
+  "amount": 10000,
+  "mchOrderNo": "mho1624005107281",
+  "ifCode": "india",
+  "entryType": "BANK_CARD",
+  "sign": "84F606FA25A6EC4783BECC08D4FDC681",
+  "reqTime": "1624005107",
+  "transferDesc": "Salary payment for March",
+  "version": "1.0",
+  "appId": "60cc09bce4b0f1c0b83761c9",
+  "accountNo": "123456789012",
+  "accountName": "Rajesh Kumar",
+  "bankName": "SBI",
+  "notifyUrl": "https://www.pkpay.vip/notify",
+  "signType": "MD5",
+  "currency": "INR",
+  "mchNo": "M1623984572"
+}`}
+              </CodeBlock>
+
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">印度代付特殊说明</h4>
+              <NoticeBox type="warning">
+                <p><strong>1. 不走第三方支付网关：</strong>印度代付与其他国家不同，不调用外部的支付/转账API。提交后订单进入"等待中"状态，需等待 <strong>OCR人工审核确认</strong> 后才能完成结算。</p>
+                <p className="mt-2"><strong>2. 结算机制：</strong>系统定时查单时检测代付子订单的 <code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState</code> 字段：</p>
+                <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
+                  <li><code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState=0</code>（未识别）→ 继续等待</li>
+                  <li><code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState=1</code>（识别成功）→ 调用审核通过 → 用户余额增加（本金 + 佣金奖励）</li>
+                  <li><code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState=2</code>（识别失败）→ 待人工介入</li>
+                </ul>
+                <p className="mt-2"><strong>3. 安全校验：</strong>支持 IP 白名单（clientIp 逐一比对）、金额范围（固定值或最大最小值）、余额充足检查。</p>
+              </NoticeBox>
+
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">各国家参数对比</h4>
+              <ParamTable compact data={[
+                { name: 'ifCode', field: 'india', required: false, type: 'colombia', example: 'miluru', description: '接口代码' },
+                { name: 'currency', field: 'INR', required: false, type: 'COP', example: 'PEN', description: '货币代码' },
+                { name: 'entryType', field: 'BANK_CARD', required: false, type: 'BANK_CARD', example: 'BANK_CARD', description: '入账方式' },
+                { name: 'extParam', field: '不填', required: false, type: '不填', example: '必填：CCI', description: '扩展参数' },
+                { name: '支付流程', field: 'OCR审核', required: false, type: '第三方网关', example: '第三方网关', description: '流程差异' },
               ]} />
 
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">返回参数 - Data数据格式</h4>
