@@ -883,7 +883,7 @@ signMap.put("version", "1.0");`}
                 { name: '支付订单号', field: 'payOrderId', required: true, type: 'String', example: 'P2044142100586033154', description: '支付中心生成的订单号' },
                 { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String', example: 'K1776196428U12446', description: '商户传入的订单号' },
                 { name: '支付金额', field: 'amount', required: true, type: 'long', example: '10500000', description: '支付金额，单位为分' },
-                { name: '货币代码', field: 'currency', required: true, type: 'String', example: 'COP', description: '货币代码' },
+                { name: '货币代码', field: 'currency', required: true, type: 'String', example: 'INR', description: '印度固定：INR' },
                 { name: '支付方式', field: 'wayCode', required: true, type: 'String', example: 'COLOMBIA_QR', description: '支付方式代码' },
                 { name: '订单状态', field: 'state', required: true, type: 'int', example: '2', description: '0-订单生成 1-支付中 2-支付成功 3-支付失败 4-已撤销 5-已退款 6-订单关闭' },
                 { name: '商品标题', field: 'subject', required: true, type: 'String', example: 'ber', description: '商品标题' },
@@ -894,7 +894,7 @@ signMap.put("version", "1.0");`}
                 { name: '签名', field: 'sign', required: true, type: 'String', example: 'CB8B5569E531B54324C94AED0B02D3FC', description: '签名值，详见签名算法' },
               ]} />
               <CodeBlock lang="TEXT" title="回调示例">
-{`https://www.xxx.com/pay/Kopay/payNotify?ifCode=colombia&amount=10500000&payOrderId=P2044142100586033154&mchOrderNo=K1776196428U12446&subject=ber&wayCode=COLOMBIA_QR&sign=CB8B5569E531B54324C94AED0B02D3FC&reqTime=1776196838883&body=ber&createdAt=1776196429760&appId=69b964c6e4b057f50d49a28d&clientIp=15.228.226.143&currency=COP&state=2&mchNo=hcm888`}
+{`https://www.xxx.com/pay/Kopay/payNotify?ifCode=india&amount=10500000&payOrderId=P2044142100586033154&mchOrderNo=K1776196428U12446&subject=ber&wayCode=INDIA_UPI&sign=CB8B5569E531B54324C94AED0B02D3FC&reqTime=1776196838883&body=ber&createdAt=1776196429760&appId=69b964c6e4b057f50d49a28d&clientIp=15.228.226.143&currency=INR&state=2&mchNo=hcm888`}
               </CodeBlock>
               <NoticeBox type="warning">
                 <p>业务系统处理后同步返回给支付中心，返回字符串 <code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">success</code> 则表示成功，返回非success则表示处理失败，支付中心会再次通知业务系统。</p>
@@ -922,7 +922,7 @@ signMap.put("version", "1.0");`}
                 { name: '接口代码', field: 'ifCode', required: true, type: 'String(10)', example: 'colombia', description: '填接口代码,详细见下方接口代码表' },
                 { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: 'BANK_CARD', description: '固定：BANK_CARD' },
                 { name: '转账金额', field: 'amount', required: true, type: 'int', example: '100', description: '转账金额单位分' },
-                { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'COP', description: '填货币代码,详细见下方货币代码表' },
+                { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'INR', description: '印度固定：INR' },
                 { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: 'o6BcIwvTvI...', description: '收款账户' },
                 { name: '收款人姓名', field: 'accountName', required: true, type: 'String(64)', example: 'payName', description: '收款人名称' },
                 { name: '扩展参数', field: 'extParam', required: false, type: 'String(64)', example: 'CCI', description: '哥伦比亚不填 秘鲁支付必填：CCI' },
@@ -943,8 +943,7 @@ signMap.put("version", "1.0");`}
 
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">货币代码表</h4>
               <ParamTable compact data={[
-                { name: 'COP', field: '-', required: false, type: '-', example: '-', description: '哥伦比亚' },
-                { name: 'PEN', field: '-', required: false, type: '-', example: '-', description: '秘鲁' },
+                { name: 'INR', field: '-', required: false, type: '-', example: '-', description: '印度' },
               ]} />
 
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">银行名称表</h4>
@@ -1012,7 +1011,7 @@ signMap.put("version", "1.0");`}
                 { name: '收款账号', field: 'accountNo', required: true, type: 'String', example: '3114538926', description: '收款账户' },
                 { name: '收款人姓名', field: 'accountName', required: true, type: 'String', example: 'Duvier', description: '收款人姓名' },
                 { name: '银行名称', field: 'bankName', required: true, type: 'String', example: 'Bank', description: '银行名称' },
-                { name: '货币代码', field: 'currency', required: true, type: 'String', example: 'COP', description: '货币代码' },
+                { name: '货币代码', field: 'currency', required: true, type: 'String', example: 'INR', description: '印度固定：INR' },
                 { name: '代付状态', field: 'state', required: true, type: 'int', example: '2', description: '0-订单生成 1-转账中 2-转账成功 3-转账失败 4-转账关闭' },
                 { name: '转账备注', field: 'transferDesc', required: false, type: 'String', example: 'bertransfer', description: '转账备注' },
                 { name: '创建时间', field: 'createdAt', required: true, type: 'long', example: '1776196718816', description: '订单创建时间，13位时间戳' },
@@ -1020,7 +1019,7 @@ signMap.put("version", "1.0");`}
                 { name: '签名', field: 'sign', required: true, type: 'String', example: '4B0D2A4DE7D0D7FBF0DECCC003364D85', description: '签名值，详见签名算法' },
               ]} />
               <CodeBlock lang="TEXT" title="回调示例">
-{`https://www.xxx.com/pay/nequ/drawNotify?ifCode=colombia&entryType=BANK_CARD&amount=1012500&accountName=Duvier&mchOrderNo=20260414288394338338U21984&sign=4B0D2A4DE7D0D7FBF0DECCC003364D85&transferDesc=bertransfer&bankName=Bank&reqTime=1776196989494&transferId=T2044143312974770177&createdAt=1776196718816&accountNo=3114538926&appId=69b512c6e4b057f50d49a28b&currency=COP&state=2&mchNo=ber888`}
+{`https://www.xxx.com/pay/nequ/drawNotify?ifCode=india&entryType=BANK_CARD&amount=1012500&accountName=Duvier&mchOrderNo=20260414288394338338U21984&sign=4B0D2A4DE7D0D7FBF0DECCC003364D85&transferDesc=bertransfer&bankName=Bank&reqTime=1776196989494&transferId=T2044143312974770177&createdAt=1776196718816&accountNo=3114538926&appId=69b512c6e4b057f50d49a28b&currency=INR&state=2&mchNo=ber888`}
               </CodeBlock>
               <NoticeBox type="warning">
                 <p>业务系统处理后同步返回给支付中心，返回字符串 <code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">success</code> 则表示成功，返回非success则表示处理失败，支付中心会再次通知业务系统。</p>
