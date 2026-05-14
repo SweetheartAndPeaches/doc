@@ -928,7 +928,7 @@ signMap.put("version", "1.0");`}
                 { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: '123456789012', description: '收款账户' },
                 { name: '收款人姓名', field: 'accountName', required: true, type: 'String(64)', example: 'Rajesh Kumar', description: '收款人名称' },
                 { name: '扩展参数', field: 'extParam', required: false, type: 'String(64)', example: '-', description: '扩展参数，暂不使用' },
-                { name: '银行名称', field: 'bankName', required: true, type: 'String(64)', example: 'SBI', description: '填银行名称, 印度详见下方银行名称表' },
+                { name: '银行名称', field: 'bankName', required: true, type: 'String(64)', example: 'SBI', description: '填银行名称, 印度详见下方银行名称表；如果是UPI转账填UPI' },
                 { name: '转账备注', field: 'transferDesc', required: true, type: 'String(128)', example: 'Salary payment', description: '转账备注' },
                 { name: '异步通知地址', field: 'notifyUrl', required: false, type: 'String(128)', example: 'https://...', description: '转账完成后回调该URL' },
                 { name: '请求时间', field: 'reqTime', required: true, type: 'long', example: '1622016572190', description: '请求接口时间,13位时间戳' },
@@ -961,11 +961,12 @@ signMap.put("version", "1.0");`}
                 { name: 'UBI', field: '-', required: false, type: '-', example: '-', description: 'Union Bank of India' },
               ]} />
               <NoticeBox type="info">
-                印度的 bankName 字段用于记录银行信息，不参与第三方API调用。任何有效的印度银行名称均可使用。
+                <p><strong>银行转账 (entryType=BANK_CARD)：</strong>bankName 字段用于记录银行信息，不参与第三方API调用。任何有效的印度银行名称均可使用。</p>
+                <p className="mt-2"><strong>UPI转账 (entryType=UPI)：</strong>bankName 固定填 "UPI"，accountNo 填 UPI ID（如：xxx@upi）。</p>
               </NoticeBox>
 
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求示例 - 印度</h4>
-              <CodeBlock lang="JSON" title="印度代付请求示例">
+              <CodeBlock lang="JSON" title="印度银行转账请求示例">
 {`{
   "amount": 10000,
   "mchOrderNo": "mho1624005107281",
@@ -979,6 +980,27 @@ signMap.put("version", "1.0");`}
   "accountNo": "123456789012",
   "accountName": "Rajesh Kumar",
   "bankName": "SBI",
+  "notifyUrl": "https://www.pkpay.vip/notify",
+  "signType": "MD5",
+  "currency": "INR",
+  "mchNo": "M1623984572"
+}`}
+              </CodeBlock>
+              
+              <CodeBlock lang="JSON" title="印度UPI转账请求示例">
+{`{
+  "amount": 10000,
+  "mchOrderNo": "mho1624005107282",
+  "ifCode": "india",
+  "entryType": "UPI",
+  "sign": "84F606FA25A6EC4783BECC08D4FDC681",
+  "reqTime": "1624005107",
+  "transferDesc": "Payment for services",
+  "version": "1.0",
+  "appId": "60cc09bce4b0f1c0b83761c9",
+  "accountNo": "rajesh.kumar@upi",
+  "accountName": "Rajesh Kumar",
+  "bankName": "UPI",
   "notifyUrl": "https://www.pkpay.vip/notify",
   "signType": "MD5",
   "currency": "INR",
@@ -1060,8 +1082,12 @@ signMap.put("version", "1.0");`}
                 { name: '回调时间', field: 'reqTime', required: true, type: 'long', example: '1776196989494', description: '回调时间，13位时间戳' },
                 { name: '签名', field: 'sign', required: true, type: 'String', example: '4B0D2A4DE7D0D7FBF0DECCC003364D85', description: '签名值，详见签名算法' },
               ]} />
-              <CodeBlock lang="TEXT" title="回调示例">
-{`https://www.xxx.com/pay/nequ/drawNotify?ifCode=india&entryType=BANK_CARD&amount=1012500&accountName=Duvier&mchOrderNo=20260414288394338338U21984&sign=4B0D2A4DE7D0D7FBF0DECCC003364D85&transferDesc=bertransfer&bankName=Bank&reqTime=1776196989494&transferId=T2044143312974770177&createdAt=1776196718816&accountNo=3114538926&appId=69b512c6e4b057f50d49a28b&currency=INR&state=2&mchNo=ber888`}
+              <CodeBlock lang="TEXT" title="银行转账回调示例">
+{`https://www.xxx.com/pay/nequ/drawNotify?ifCode=india&entryType=BANK_CARD&amount=1012500&accountName=Rajesh Kumar&mchOrderNo=20260414288394338338U21984&sign=4B0D2A4DE7D0D7FBF0DECCC003364D85&transferDesc=Salary payment&bankName=SBI&reqTime=1776196989494&transferId=T2044143312974770177&createdAt=1776196718816&accountNo=123456789012&appId=69b512c6e4b057f50d49a28b&currency=INR&state=2&mchNo=ber888`}
+              </CodeBlock>
+              
+              <CodeBlock lang="TEXT" title="UPI转账回调示例">
+{`https://www.xxx.com/pay/nequ/drawNotify?ifCode=india&entryType=UPI&amount=1012500&accountName=Rajesh Kumar&mchOrderNo=20260414288394338338U21985&sign=4B0D2A4DE7D0D7FBF0DECCC003364D85&transferDesc=Payment for services&bankName=UPI&reqTime=1776196989494&transferId=T2044143312974770178&createdAt=1776196718816&accountNo=rajesh.kumar@upi&appId=69b512c6e4b057f50d49a28b&currency=INR&state=2&mchNo=ber888`}
               </CodeBlock>
               <NoticeBox type="warning">
                 <p>业务系统处理后同步返回给支付中心，返回字符串 <code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">success</code> 则表示成功，返回非success则表示处理失败，支付中心会再次通知业务系统。</p>
