@@ -785,6 +785,7 @@ signMap.put("version", "1.0");`}
                 { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID,系统获取' },
                 { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '商户生成的订单号' },
                 { name: '支付方式', field: 'wayCode', required: true, type: 'String(30)', example: 'INDIA_UPI', description: '印度UPI：INDIA_UPI；印度银行：INDIA_BANK（暂不支持）' },
+                { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: 'BANK_CARD', description: 'BANK_CARD（所有国家通用）UPI（印度UPI专业用）' },
                 { name: '支付金额', field: 'amount', required: true, type: 'int', example: '100', description: '单位分,不含小数点' },
                 { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'INR', description: '印度固定：INR' },
                 { name: '商品标题', field: 'subject', required: true, type: 'String(64)', example: '商品标题测试', description: '商品标题' },
@@ -802,7 +803,8 @@ signMap.put("version", "1.0");`}
   "amount": 8,
   "mchOrderNo": "mho1624005107281",
   "subject": "商品标题",
-  "wayCode": "ALI_BAR",
+  "wayCode": "INDIA_UPI",
+  "entryType": "UPI",
   "sign": "84F606FA25A6EC4783BECC08D4FDC681",
   "reqTime": "1624005107",
   "body": "商品描述",
@@ -811,7 +813,7 @@ signMap.put("version", "1.0");`}
   "clientIp": "192.166.1.132",
   "notifyUrl": "https://www.pkpay.vip",
   "signType": "MD5",
-  "currency": "cny",
+  "currency": "INR",
   "mchNo": "M1623984572"
 }`}
               </CodeBlock>
@@ -920,7 +922,7 @@ signMap.put("version", "1.0");`}
                 { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID' },
                 { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '商户订单号' },
                 { name: '接口代码', field: 'ifCode', required: true, type: 'String(10)', example: 'india', description: '填接口代码,详细见下方接口代码表' },
-                { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: 'BANK_CARD', description: '固定：BANK_CARD（所有国家通用）' },
+                { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: 'BANK_CARD', description: 'BANK_CARD（所有国家通用）UPI（印度UPI专业用）' },
                 { name: '转账金额', field: 'amount', required: true, type: 'int', example: '10000', description: '转账金额，单位：分（印度：派萨，10000 = ₹100.00）' },
                 { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'INR', description: '印度固定：INR' },
                 { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: '123456789012', description: '收款账户' },
