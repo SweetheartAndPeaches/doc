@@ -1008,18 +1008,6 @@ signMap.put("version", "1.0");`}
 }`}
               </CodeBlock>
 
-              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">印度代付特殊说明</h4>
-              <NoticeBox type="warning">
-                <p><strong>1. 不走第三方支付网关：</strong>印度代付与其他国家不同，不调用外部的支付/转账API。提交后订单进入"等待中"状态，需等待 <strong>OCR人工审核确认</strong> 后才能完成结算。</p>
-                <p className="mt-2"><strong>2. 结算机制：</strong>系统定时查单时检测代付子订单的 <code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState</code> 字段：</p>
-                <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
-                  <li><code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState=0</code>（未识别）→ 继续等待</li>
-                  <li><code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState=1</code>（识别成功）→ 调用审核通过 → 用户余额增加（本金 + 佣金奖励）</li>
-                  <li><code className="px-1 py-0.5 bg-yellow-100 dark:bg-yellow-900/50 rounded text-xs font-mono">ocrState=2</code>（识别失败）→ 待人工介入</li>
-                </ul>
-                <p className="mt-2"><strong>3. 安全校验：</strong>支持 IP 白名单（clientIp 逐一比对）、金额范围（固定值或最大最小值）、余额充足检查。</p>
-              </NoticeBox>
-
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">返回参数 - Data数据格式</h4>
               <NoticeBox type="info">
                 注：当code = 0 且 state = 1 才表示转账中
