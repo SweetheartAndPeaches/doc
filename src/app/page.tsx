@@ -484,7 +484,7 @@ export default function PaymentDocPage() {
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <img 
-                      src="/kopay-logo.png" 
+                      src="/sphpay-logo.png" 
                       alt="Sph-Pay Logo" 
                       className="w-10 h-10 rounded-xl shadow-lg"
                     />
@@ -586,7 +586,7 @@ export default function PaymentDocPage() {
               </div>
               <div className="flex justify-center mb-4">
                 <img 
-                  src="/kopay-logo.png" 
+                  src="/sphpay-logo.png" 
                   alt="Sph-Pay Logo" 
                   className="w-20 h-20 rounded-2xl shadow-xl"
                 />
