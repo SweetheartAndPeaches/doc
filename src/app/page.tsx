@@ -888,8 +888,10 @@ signMap.put("version", "1.0");`}
               <SectionHeader title="代收回调" badge="回调" isCallback />
               <ApiInfo rows={[
                 { label: '接口说明', value: '当订单支付成功时，支付网关会向商户系统发起回调通知。如果商户系统没有正确返回，支付网关会延迟再次通知。' },
-                { label: '回调URL', value: '由支付网关根据商户配置自动回调，如：https://www.xxx.com/pay/Kopay/payNotify' },
-                { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">GET</code></> },
+                { label: '适用对象', value: '普通商户 特约商户' },
+                { label: '请求URL', value: '该链接是通过统一下单接口提交的参数notifyUrl设置，如果无法访问链接，商户系统将无法接收到支付中心的通知。' },
+                { label: '请求方式', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">POST</code></> },
+                { label: '请求类型', value: <><code className="px-2 py-0.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded text-xs font-mono">application/x-www-form-urlencoded</code></> },
               ]} />
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">回调参数</h4>
               <ParamTable data={[
