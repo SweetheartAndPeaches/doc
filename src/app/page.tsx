@@ -165,9 +165,11 @@ function ParamTable({
             <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
               字段名
             </th>
-            <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
-              变量名
-            </th>
+            {!compact && (
+              <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                变量名
+              </th>
+            )}
             <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
               必填
             </th>
@@ -188,11 +190,13 @@ function ParamTable({
               <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-700 dark:text-gray-300 whitespace-nowrap font-medium">
                 {item.name}
               </td>
-              <td className="p-3 border-t border-gray-100 dark:border-slate-700">
-                <code className="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-mono font-medium">
-                  {item.field}
-                </code>
-              </td>
+              {!compact && (
+                <td className="p-3 border-t border-gray-100 dark:border-slate-700">
+                  <code className="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-mono font-medium">
+                    {item.field}
+                  </code>
+                </td>
+              )}
               <td className="p-3 border-t border-gray-100 dark:border-slate-700 whitespace-nowrap">
                 {item.required ? (
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
