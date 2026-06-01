@@ -175,12 +175,16 @@ function ParamTable({
                 必填
               </th>
             )}
-            <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
-              类型
-            </th>
-            <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
-              示例值
-            </th>
+            {!compact && (
+              <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                类型
+              </th>
+            )}
+            {!compact && (
+              <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                示例值
+              </th>
+            )}
             <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700">
               描述
             </th>
@@ -212,12 +216,16 @@ function ParamTable({
                   )}
                 </td>
               )}
-              <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                {item.type}
-              </td>
-              <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap font-mono text-xs">
-                {item.example}
-              </td>
+              {!compact && (
+                <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                  {item.type}
+                </td>
+              )}
+              {!compact && (
+                <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap font-mono text-xs">
+                  {item.example}
+                </td>
+              )}
               <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-600 dark:text-gray-400 text-xs leading-relaxed">
                 {item.description}
               </td>
