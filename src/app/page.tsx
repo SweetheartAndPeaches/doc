@@ -165,18 +165,26 @@ function ParamTable({
             <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
               字段名
             </th>
-            <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
-              变量名
-            </th>
-            <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
-              必填
-            </th>
-            <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
-              类型
-            </th>
-            <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
-              示例值
-            </th>
+            {!compact && (
+              <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                变量名
+              </th>
+            )}
+            {!compact && (
+              <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                必填
+              </th>
+            )}
+            {!compact && (
+              <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                类型
+              </th>
+            )}
+            {!compact && (
+              <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                示例值
+              </th>
+            )}
             <th className="p-3 text-left font-semibold text-gray-600 dark:text-gray-300 border-b border-gray-100 dark:border-slate-700">
               描述
             </th>
@@ -188,28 +196,36 @@ function ParamTable({
               <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-700 dark:text-gray-300 whitespace-nowrap font-medium">
                 {item.name}
               </td>
-              <td className="p-3 border-t border-gray-100 dark:border-slate-700">
-                <code className="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-mono font-medium">
-                  {item.field}
-                </code>
-              </td>
-              <td className="p-3 border-t border-gray-100 dark:border-slate-700 whitespace-nowrap">
-                {item.required ? (
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
-                    必填
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500 dark:bg-slate-700 dark:text-gray-400">
-                    选填
-                  </span>
-                )}
-              </td>
-              <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap">
-                {item.type}
-              </td>
-              <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap font-mono text-xs">
-                {item.example}
-              </td>
+              {!compact && (
+                <td className="p-3 border-t border-gray-100 dark:border-slate-700">
+                  <code className="px-2 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg text-xs font-mono font-medium">
+                    {item.field}
+                  </code>
+                </td>
+              )}
+              {!compact && (
+                <td className="p-3 border-t border-gray-100 dark:border-slate-700 whitespace-nowrap">
+                  {item.required ? (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">
+                      必填
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-500 dark:bg-slate-700 dark:text-gray-400">
+                      选填
+                    </span>
+                  )}
+                </td>
+              )}
+              {!compact && (
+                <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap">
+                  {item.type}
+                </td>
+              )}
+              {!compact && (
+                <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-500 dark:text-gray-400 whitespace-nowrap font-mono text-xs">
+                  {item.example}
+                </td>
+              )}
               <td className="p-3 border-t border-gray-100 dark:border-slate-700 text-gray-600 dark:text-gray-400 text-xs leading-relaxed">
                 {item.description}
               </td>
