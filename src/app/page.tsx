@@ -1020,6 +1020,59 @@ signMap.put("version", "1.0");`}
                 { name: '签名', field: 'sign', required: true, type: 'String(32)', example: 'C380BEC2...', description: '签名值，详见签名算法' },
                 { name: '签名类型', field: 'signType', required: true, type: 'String(32)', example: 'MD5', description: '签名类型，目前只支持MD5方式' },
               ]} />
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">返回参数</h4>
+              <ParamTable data={[
+                { name: '返回状态', field: 'code', required: true, type: 'int', example: '0', description: '0-处理成功，其他-处理有误，详见错误码' },
+                { name: '返回信息', field: 'msg', required: false, type: 'String(128)', example: '签名失败', description: '具体错误原因，例如：签名失败、参数格式校验错误' },
+                { name: '签名信息', field: 'sign', required: false, type: 'String(32)', example: 'CCD9083A6DAD9A2DA9F668C3D4517A84', description: '对data内数据签名,如data为空则不返回' },
+                { name: '返回数据', field: 'data', required: false, type: 'String(512)', example: '{}', description: '返回下单数据,json格式数据' },
+              ]} />
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">data数据格式</h4>
+              <ParamTable data={[
+                { name: '商户号', field: 'mchNo', required: true, type: 'String(30)', example: 'M1621873433953', description: '商户号' },
+                { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID' },
+                { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '商户生成的转账订单号' },
+                { name: '转账订单号', field: 'transferId', required: true, type: 'String(30)', example: 'T20160427210604000490', description: '支付中心生成的转账单号' },
+                { name: '转账金额', field: 'amount', required: true, type: 'int', example: '100', description: '转账金额,单位分' },
+                { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'cny', description: '三位货币代码,人民币:cny' },
+                { name: '接口代码', field: 'ifCode', required: true, type: 'String(10)', example: 'wxpay', description: 'wxpay-微信官方接口 ; alipay-支付宝官方接口' },
+                { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: '20160427210604000490', description: '入账方式： WX_CASH-微信零钱; ALIPAY_CASH-支付宝转账; BANK_CARD-银行卡' },
+                { name: '转账状态', field: 'state', required: true, type: 'int', example: '2', description: '转账状态\n0-订单生成\n1-转账中\n2-转账成功\n3-转账失败\n4-转账关闭' },
+                { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: 'o6BcIwvTvIqf1zXZohc61biryWik', description: 'wxpay-openID, alipay-登录账号' },
+                { name: '收款人姓名', field: 'accountName', required: false, type: 'String(64)', example: '张三', description: '填入则验证姓名，否则不验证' },
+                { name: '收款人开户行名称', field: 'bankName', required: false, type: 'String(64)', example: '中国工商银行', description: '当前仅作为记录' },
+                { name: '转账备注信息', field: 'transferDesc', required: false, type: 'String(128)', example: '测试转账', description: '转账备注信息' },
+                { name: '渠道转账单号', field: 'channelOrderNo', required: false, type: 'String', example: '20160427210604000490', description: '对应渠道的转账单号' },
+                { name: '渠道错误码', field: 'errCode', required: false, type: 'String', example: '1002', description: '渠道返回错误码' },
+                { name: '渠道错误描述', field: 'errMsg', required: false, type: 'String', example: '134586944573118714', description: '渠道返回错误描述' },
+                { name: '扩展参数', field: 'extParam', required: false, type: 'String(512)', example: '134586944573118714', description: '商户扩展参数,回调时会原样返回' },
+                { name: '创建时间', field: 'createdAt', required: true, type: 'long', example: '1622016572190', description: '订单创建时间,13位时间戳' },
+                { name: '成功时间', field: 'successTime', required: false, type: 'long', example: '1622016572190', description: '转账成功时间,13位时间戳' },
+              ]} />
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">返回示例数据</h4>
+              <CodeBlock lang="JSON" title="返回示例">
+{`{
+    "code": 0,
+    "data": {
+        "accountNo": "o6BcIwvTvIqf1zXZohc61biryWik",
+        "amount": 1,
+        "appId": "6113805e42020495c62bd4cb",
+        "createdAt": 1628818820011,
+        "currency": "CNY",
+        "entryType": "WX_CASH",
+        "errCode": "OPENID_ERROR",
+        "errMsg": "openid与商户appid不匹配【openid与商户appid不匹配】",
+        "ifCode": "wxpay",
+        "mchNo": "M1623997351",
+        "mchOrderNo": "1628818820",
+        "state": 3,
+        "transferDesc": "测试",
+        "transferId": "T202108130940200100001"
+    },
+    "msg": "SUCCESS",
+    "sign": "A262DBD3D6182E8A0AEC90EF820F2A5A"
+}`}
+              </CodeBlock>
             </section>
 
             {/* 转账通知 */}
