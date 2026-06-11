@@ -881,6 +881,34 @@ signMap.put("version", "1.0");`}
                 { name: '签名', field: 'sign', required: true, type: 'String(32)', example: 'C380BEC2...', description: '签名值，详见签名算法' },
                 { name: '签名类型', field: 'signType', required: true, type: 'String(32)', example: 'MD5', description: '签名类型，目前只支持MD5方式' },
               ]} />
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">返回参数</h4>
+              <ParamTable data={[
+                { name: '返回状态', field: 'code', required: true, type: 'int', example: '0', description: '0-处理成功，其他-处理有误，详见错误码' },
+                { name: '返回信息', field: 'msg', required: false, type: 'String(128)', example: '签名失败', description: '具体错误原因，例如：签名失败、参数格式校验错误' },
+                { name: '签名信息', field: 'sign', required: false, type: 'String(32)', example: 'CCD9083A6DAD9A2DA9F668C3D4517A84', description: '对data内数据签名,如data为空则不返回' },
+                { name: '返回数据', field: 'data', required: false, type: 'String(512)', example: '{}', description: '返回下单数据,json格式数据' },
+              ]} />
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">data数据格式</h4>
+              <ParamTable data={[
+                { name: '支付订单号', field: 'payOrderId', required: true, type: 'String(30)', example: 'P12021022311124442600', description: '返回支付系统订单号' },
+                { name: '商户号', field: 'mchNo', required: true, type: 'String(30)', example: 'M1621873433953', description: '商户号' },
+                { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID' },
+                { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '返回商户传入的订单号' },
+                { name: '支付接口', field: 'ifCode', required: true, type: 'String(30)', example: 'wxpay', description: '支付接口编码' },
+                { name: '支付方式', field: 'wayCode', required: true, type: 'String(30)', example: 'WX_LITE', description: '支付方式,如微信小程序WX_LITE' },
+                { name: '支付金额', field: 'amount', required: true, type: 'int', example: '100', description: '支付金额,单位分' },
+                { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'cny', description: '三位货币代码,人民币:cny' },
+                { name: '订单状态', field: 'state', required: true, type: 'int', example: '2', description: '支付订单状态\n0-订单生成\n1-支付中\n2-支付成功\n3-支付失败\n4-已撤销\n5-已退款\n6-订单关闭' },
+                { name: '客户端IP', field: 'clientIp', required: false, type: 'String(32)', example: '210.73.10.148', description: '客户端IPV4地址' },
+                { name: '商品标题', field: 'subject', required: true, type: 'String(64)', example: 'Jeepay商品标题测试', description: '商品标题' },
+                { name: '商品描述', field: 'body', required: true, type: 'String(256)', example: 'Jeepay商品描述测试', description: '商品描述' },
+                { name: '渠道订单号', field: 'channelOrderNo', required: false, type: 'String', example: '20160427210604000490', description: '对应渠道的订单号' },
+                { name: '渠道错误码', field: 'errCode', required: false, type: 'String', example: '1002', description: '渠道下单返回错误码' },
+                { name: '渠道错误描述', field: 'errMsg', required: false, type: 'String', example: '业务异常错误', description: '渠道下单返回错误描述' },
+                { name: '扩展参数', field: 'extParam', required: false, type: 'String(512)', example: '134586944573118714', description: '商户扩展参数,回调时会原样返回' },
+                { name: '创建时间', field: 'createdAt', required: true, type: 'long', example: '1622016572190', description: '订单创建时间,13位时间戳' },
+                { name: '成功时间', field: 'successTime', required: false, type: 'long', example: '1622016572190', description: '订单支付成功时间,13位时间戳' },
+              ]} />
             </section>
 
             {/* 支付通知 */}
