@@ -986,6 +986,7 @@ signMap.put("version", "1.0");`}
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">接口代码表</h4>
               <ParamTable compact data={[
                 { name: 'india', field: '-', required: false, type: '-', example: '-', description: '印度' },
+                { name: 'bullpay', field: '-', required: false, type: '-', example: '-', description: '泰国' },
               ]} />
 
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">货币代码表</h4>
