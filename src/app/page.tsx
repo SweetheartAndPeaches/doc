@@ -800,7 +800,7 @@ signMap.put("version", "1.0");`}
                 { name: '商户号', field: 'mchNo', required: true, type: 'String(30)', example: 'M1621873433953', description: '商户号,系统获取' },
                 { name: '应用ID', field: 'appId', required: true, type: 'String(24)', example: '60cc09bce4b0f1c0b83761c9', description: '应用ID,系统获取' },
                 { name: '商户订单号', field: 'mchOrderNo', required: true, type: 'String(30)', example: '20160427210604000490', description: '商户生成的订单号' },
-                { name: '支付方式', field: 'wayCode', required: true, type: 'String(30)', example: 'INDIA_UPI', description: '印度UPI：INDIA_UPI；印度银行：INDIA_BANK（暂不支持）' },
+                { name: '支付方式', field: 'wayCode', required: true, type: 'String(30)', example: 'INDIA_UPI', description: '印度UPI：INDIA_UPI；印度银行：INDIA_BANK（暂不支持）；泰国代收：THAI_PAYIN' },
                 { name: '入账方式', field: 'entryType', required: true, type: 'String(20)', example: 'BANK_CARD', description: 'BANK_CARD（所有国家通用）UPI（印度UPI专业用）' },
                 { name: '支付金额', field: 'amount', required: true, type: 'int', example: '100', description: '单位分,不含小数点' },
                 { name: '货币代码', field: 'currency', required: true, type: 'String(3)', example: 'INR', description: '印度固定：INR' },
