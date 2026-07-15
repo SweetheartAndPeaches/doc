@@ -1036,7 +1036,7 @@ signMap.put("version", "1.0");`}
                 { name: 'KKP', field: '-', required: false, type: '-', example: '-', description: 'Kiatnakin Phatra Bank Public Company Limited' },
               ]} />
               <NoticeBox type="info">
-                <p><strong>银行转账 (entryType=BANK_CARD)：</strong>bankName 字段用于记录银行信息，不参与第三方API调用。任何有效的泰国银行名称均可使用。</p>
+                <p><strong>银行转账 (entryType=BANK_CARD)：</strong>bankName 字段请填写简码（如：BBL、KBANK、SCB等）。</p>
               </NoticeBox>
 
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求示例 - 印度</h4>
