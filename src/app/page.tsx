@@ -974,7 +974,7 @@ signMap.put("version", "1.0");`}
                 { name: '收款账号', field: 'accountNo', required: true, type: 'String(64)', example: '123456789012', description: '收款账户' },
                 { name: '收款人姓名', field: 'accountName', required: true, type: 'String(64)', example: 'Rajesh Kumar', description: '收款人名称' },
                 { name: '扩展参数', field: 'extParam', required: false, type: 'String(64)', example: '-', description: '扩展参数，暂不使用' },
-                { name: '银行名称', field: 'bankName', required: true, type: 'String(64)', example: 'SBI', description: '填银行名称, 印度详见下方银行名称表；如果是UPI转账填UPI' },
+                { name: '银行名称', field: 'bankName', required: true, type: 'String(64)', example: 'SBI', description: '填银行名称, 印度/泰国详见下方银行名称表；如果是UPI转账填UPI；泰国银行转账填写银行简码' },
                 { name: '转账备注', field: 'transferDesc', required: true, type: 'String(128)', example: 'Salary payment', description: '转账备注' },
                 { name: '异步通知地址', field: 'notifyUrl', required: false, type: 'String(128)', example: 'https://...', description: '转账完成后回调该URL' },
                 { name: '请求时间', field: 'reqTime', required: true, type: 'long', example: '1622016572190', description: '请求接口时间,13位时间戳' },
