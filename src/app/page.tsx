@@ -1011,6 +1011,34 @@ signMap.put("version", "1.0");`}
                 <p className="mt-2"><strong>UPI转账 (entryType=UPI)：</strong>bankName 固定填 "UPI"，accountNo 填 UPI ID（如：xxx@upi）。</p>
               </NoticeBox>
 
+              <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">银行名称表（泰国常见银行）</h4>
+              <ParamTable compact data={[
+                { name: 'BAAC', field: '-', required: false, type: '-', example: '-', description: 'Bank for Agriculture and Agricultural Cooperatives' },
+                { name: 'BAY', field: '-', required: false, type: '-', example: '-', description: 'Bank of Ayudhya' },
+                { name: 'BBL', field: '-', required: false, type: '-', example: '-', description: 'Bangkok Bank' },
+                { name: 'CITI', field: '-', required: false, type: '-', example: '-', description: 'Citibank N.A.' },
+                { name: 'GHB', field: '-', required: false, type: '-', example: '-', description: 'Government Housing Bank' },
+                { name: 'GSB', field: '-', required: false, type: '-', example: '-', description: 'Government Savings Bank' },
+                { name: 'KBANK', field: '-', required: false, type: '-', example: '-', description: 'Kasikornbank' },
+                { name: 'KTB', field: '-', required: false, type: '-', example: '-', description: 'Krung Thai Bank' },
+                { name: 'LHBANK', field: '-', required: false, type: '-', example: '-', description: 'Land and Houses Bank' },
+                { name: 'SCB', field: '-', required: false, type: '-', example: '-', description: 'Siam Commercial Bank' },
+                { name: 'SMBC', field: '-', required: false, type: '-', example: '-', description: 'Sumitomo Mitsui Banking Corporation' },
+                { name: 'TISCO', field: '-', required: false, type: '-', example: '-', description: 'Tisco Bank Public Company Limited' },
+                { name: 'TMB', field: '-', required: false, type: '-', example: '-', description: 'TMBThanachart Bank Public Company Limited' },
+                { name: 'CIMB', field: '-', required: false, type: '-', example: '-', description: 'CIMB Thai Bank Public Company Limited' },
+                { name: 'IBANK', field: '-', required: false, type: '-', example: '-', description: 'Islamic Bank of Thailand' },
+                { name: 'ICBC', field: '-', required: false, type: '-', example: '-', description: 'ICBC (Thai) Public Company Limited' },
+                { name: 'MHCB', field: '-', required: false, type: '-', example: '-', description: 'Mizuho Bank' },
+                { name: 'SCBN', field: '-', required: false, type: '-', example: '-', description: 'Standard Chartered Bank (Thai) Public Company Limited' },
+                { name: 'TCRB', field: '-', required: false, type: '-', example: '-', description: 'Thai Credit Retail Bank Public Company Limited' },
+                { name: 'UOB', field: '-', required: false, type: '-', example: '-', description: 'United Overseas Bank (Thai) Public Company Limited' },
+                { name: 'KKP', field: '-', required: false, type: '-', example: '-', description: 'Kiatnakin Phatra Bank Public Company Limited' },
+              ]} />
+              <NoticeBox type="info">
+                <p><strong>银行转账 (entryType=BANK_CARD)：</strong>bankName 字段用于记录银行信息，不参与第三方API调用。任何有效的泰国银行名称均可使用。</p>
+              </NoticeBox>
+
               <h4 className="font-bold text-gray-900 dark:text-white mt-6 mb-3">请求示例 - 印度</h4>
               <CodeBlock lang="JSON" title="印度银行转账请求示例">
 {`{
